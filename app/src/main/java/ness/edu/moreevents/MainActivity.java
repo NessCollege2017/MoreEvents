@@ -1,45 +1,54 @@
 package ness.edu.moreevents;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
 
-    //properties:
-    private Button btnNumber;
-    private Button btnOperator;
+    private TextView tvResult;
+    private SeekBar sbRed;
+    private SeekBar sbGreen;
+    private SeekBar sbBlue;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnNumber = (Button) findViewById(R.id.btnNumber);
-        btnOperator = (Button) findViewById(R.id.btnOperator);
+        tvResult = (TextView) findViewById(R.id.tvResult);
 
-        btnNumber.setOnClickListener(new NumberClicked());
-        btnOperator.setOnClickListener(new OperatorClicked());
+        sbRed = (SeekBar) findViewById(R.id.sbRed);
+        sbGreen = (SeekBar) findViewById(R.id.sbGreen);
+        sbBlue = (SeekBar) findViewById(R.id.sbBlue);
 
-        class MyClass implements View.OnClickListener{
-            @Override
-            public void onClick(View v) {
-
-            }
-        }
-
-        View.OnClickListener listener = new MyClass();
-
-        View.OnClickListener l = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        };
+        sbRed.setOnSeekBarChangeListener(this);
+        sbGreen.setOnSeekBarChangeListener(this);
+        sbBlue.setOnSeekBarChangeListener(this);
     }
 
     @Override
-    public void onClick(View v) {
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        //tvResult.setTextSize(sbRed.getProgress());
+        int rgb = Color.rgb(
+                sbRed.getProgress(),
+                sbGreen.getProgress(),
+                sbBlue.getProgress()
+        );
+
+        tvResult.setBackgroundColor(rgb);
+        //int x = 0xff00ff;
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
 
     }
 }
