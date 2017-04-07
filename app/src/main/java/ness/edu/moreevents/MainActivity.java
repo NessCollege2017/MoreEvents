@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
     private SeekBar sbBlue;
     private EditText etRed, etGreen, etBlue;
 
-    private boolean userIsCurrentlyScrolling = true;
+    private boolean userIsCurrentlyScrolling = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,8 +97,6 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
-
-
     }
 
     @Override
