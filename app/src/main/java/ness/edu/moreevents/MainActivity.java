@@ -83,13 +83,6 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-
-    }
-
-    @Override
-    public void afterTextChanged(Editable s) {
-
         try {
             int redValue = Integer.valueOf(etRed.getText().toString());
             int greenValue = Integer.valueOf(etGreen.getText().toString());
@@ -99,11 +92,18 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
                 sbRed.setProgress(redValue);
                 sbGreen.setProgress(greenValue);
                 sbBlue.setProgress(blueValue);
-             }
+            }
 
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
-        userIsCurrentlyScrolling = true;
+
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+
+
     }
 }
